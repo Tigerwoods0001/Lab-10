@@ -1,0 +1,28 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 400,
+    "title": "COVID-19 Cases per Country (13 Oct 2020)",
+    "data": {
+    "url": "https://raw.githubusercontent.com/Tigerwoods0001/Lab-10/main/homacide.csv"
+    },
+    "transform": [
+        {"filter": {"field": "Country", "oneOf": ["Australia and New Zealand", "India","China"]}}
+      ],
+    
+    "mark": "line",
+    "encoding": {
+    "x": {
+    "field": "Year",
+    "type": "quantitative"
+    },
+    "y": {
+    "field": "Value",
+    "type": "quantitative"
+    },
+    "color": {
+    "field": "Country",
+    "type": "nominal"
+    }
+    }
+    }

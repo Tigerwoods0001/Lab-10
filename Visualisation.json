@@ -1,0 +1,91 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 5000,
+    "height": 1000,
+    "title": "Intentional homicide rates per 100,000",
+    "data": {
+      "url": "https://raw.githubusercontent.com/Tigerwoods0001/Lab-10/main/homacide.csv"
+    },
+    "params": [
+  {
+  "name": "Country_selection",
+  "bind": {
+  "input": "select",
+  "options": [
+  null,
+  "Afghanistan",
+  "Australia",
+  "Belgium"
+  
+  ],
+  "labels": [
+  "Show All",
+  "Afghanistan",
+  "Australia",
+  "Belgium"
+  
+  ],
+  "name": "Country Selection: "
+  }
+  }
+  ],
+  "transform": [
+  {
+  "filter": "Country_selection == null || datum.Country ==Country_selection"
+  }],
+  
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "Country",
+            "type": "nominal",
+            "title": "Confirmed Cases"
+          },
+          "y": {
+            "field": "Value",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "Year",
+            "type": "quantitative"
+          },
+          "tooltip": [
+            {"field": "Country", "type": "nominal"},
+            {"field": "Value", "type": "quantitative", "format": ","}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 5,
+          "dy": -5,
+          "fontSize": 12
+        },
+        "encoding": {
+          "text": {
+            "condition": {
+              "test": "datum['Country'] == 'Australia'",
+              "value": "Australia"
+            },
+            "value": ""
+          },
+          "x": {"field": "Country", "type": "nominal"},
+          "y": {"field": "Value", "type": "quantitative"},
+          "color": {"value": "black"},
+          "opacity": {
+            "condition": {
+              "test": "datum['Country'] == 'Australia'",
+              "value": 1
+            },
+            "value": 0
+          }
+        }
+      }
+    ]
+  }
+  
